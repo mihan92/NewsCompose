@@ -1,4 +1,4 @@
-package com.example.newscompose
+package com.example.newscompose.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,6 +16,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.newscompose.NewsList
+import com.example.newscompose.R
 import com.example.newscompose.ui.theme.NewsComposeTheme
 
 @Composable

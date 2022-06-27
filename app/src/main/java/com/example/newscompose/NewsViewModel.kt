@@ -3,18 +3,25 @@ package com.example.newscompose
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.newscompose.models.NewsModel
 
 class NewsViewModel: ViewModel() {
 
-    private val _title: MutableLiveData<String> = MutableLiveData(news_title)
-    val title: LiveData<String> = _title
+    private val listNews = mutableListOf<NewsModel>()
 
-    private val _date: MutableLiveData<String> = MutableLiveData(news_date)
-    val date: LiveData<String> = _date
+    init {
+        addList()
+    }
 
-    private val _description: MutableLiveData<String> = MutableLiveData(news_description)
-    val description: LiveData<String> = _description
+    private val _newsViewModel: MutableLiveData<List<NewsModel>> = MutableLiveData(listNews)
+    val newsViewModel: LiveData<List<NewsModel>> = _newsViewModel
 
+
+    private fun addList() {
+        for (i in 0 until 10) {
+            listNews.add(NewsModel(news_title, news_date, news_description))
+        }
+    }
 }
 
 private val news_title = "Глава МИД РФ Сергей Лавров не исключил, что НАТО и ЕС собирают коалицию для войны с Россией. Такое заявление представитель Кремля сделал 24 июня в ходе пресс-конференции с коллегой из Азербайджана."

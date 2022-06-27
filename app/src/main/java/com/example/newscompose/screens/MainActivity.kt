@@ -6,8 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.newscompose.DetailScreen
-import com.example.newscompose.HomeScreen
+import com.example.newscompose.models.NewsModel
 
 
 class MainActivity : ComponentActivity() {
@@ -16,8 +15,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             NavHost(navController, startDestination = "homeScreen") {
-                composable(route = "homeScreen") { HomeScreen(navController) }
-                composable(route = "detailScreen") { DetailScreen() }
+                composable(route = "homeScreen") { HomeScreen(navController = navController) }
+                composable(route = "detailScreen") {
+                    val newsItem =
+                        navController.previousBackStackEntry?.savedStateHandle?.get<NewsModel>("key")
+                    newsItem?.let {
+                        DetailScreen(navController = navController, newsItem =  newsItem)
+                    }
+
+                }
             }
         }
     }
